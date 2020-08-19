@@ -49,6 +49,13 @@ function startGamePlay(){
    if (snake[0].y > 14 * box && direction == "down") snake[0].y = 0
    if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box
 
+   for(indice= 1; indice<snake.length; indice++){
+      if (snake[0].x == snake[indice].x && snake[0].y == snake[indice].y) {
+         clearInterval(game)
+         alert('Game Over')
+      }
+   }
+
    createBG();
    createSnake();
    drawFood();
@@ -66,9 +73,7 @@ function startGamePlay(){
    } else {
       food.x = Math.floor(Math.random()*15 + 1)*box
       food.y = Math.floor(Math.random()*15 + 1)*box
-   }
-
-   
+   }   
    
    let newHead= {
       x: snakeX,
@@ -78,5 +83,5 @@ function startGamePlay(){
    snake.unshift(newHead)
 }
 
-let game= setInterval(startGamePlay, 100)
+let game= setInterval(startGamePlay, 150)
 
